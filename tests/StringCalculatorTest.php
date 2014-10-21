@@ -101,7 +101,7 @@ class StringCalculatorTest extends PHPUnit_Framework_TestCase
     {
         $calculator = $this->getCalculator();
 
-        $this->assertSame(55, $calculator->add("//longdelimiter\n0longdelimiter1longdelimiter2longdelimiter3longdelimiter4longdelimiter5longdelimiter6longdelimiter7longdelimiter8longdelimiter9longdelimiter10"));
+        $this->assertSame(55, $calculator->add("//[longdelimiter]\n0longdelimiter1longdelimiter2longdelimiter3longdelimiter4longdelimiter5longdelimiter6longdelimiter7longdelimiter8longdelimiter9longdelimiter10"));
     }
 
     /**

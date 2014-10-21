@@ -39,7 +39,11 @@ class StringCalculator
     private function getDelimiters($numbers)
     {
         $matches = array();
-        if (preg_match("#//(.*)?\n#", $numbers, $matches))
+        if (preg_match("#//(.)\n#", $numbers, $matches))
+        {
+            return array($matches[1]);
+        }
+        if (preg_match("#//\[(.*)?]\n#", $numbers, $matches))
         {
             return array($matches[1]);
         }
