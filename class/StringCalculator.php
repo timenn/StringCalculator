@@ -6,9 +6,18 @@ class StringCalculator
     {
         $result = 0;
         $delimiters = $this->getDelimiters($numbers);
+        $negatives = array();
         foreach($this->parseNumbers($numbers, $delimiters) as $number)
         {
-            $result += (int)$number;
+            if((int)$number < 0) {
+                $negatives[] = $number;
+            } else {
+                $result += (int)$number;
+            }
+        }
+        if (count($negatives) > 0)
+        {
+            throw new Exception("Negatives not allowed: " . implode(",", $negatives));
         }
         return $result;
     }

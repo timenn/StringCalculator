@@ -92,4 +92,40 @@ class StringCalculatorTest extends PHPUnit_Framework_TestCase
         $this->assertSame(55, $calculator->add("//longdelimiter\n0longdelimiter1longdelimiter2longdelimiter3longdelimiter4longdelimiter5longdelimiter6longdelimiter7longdelimiter8longdelimiter9longdelimiter10"));
     }
 
+    /**
+     * @test
+     * @expectedException        Exception
+     * @expectedExceptionMessage Negatives not allowed: -1
+     */
+    public function ANegativeNumberAsInputResultsInAnExceptionListingTheNegativeNumber()
+    {
+        $calculator = $this->getCalculator();
+
+        $calculator->add("-1");
+    }
+
+    /**
+     * @test
+     * @expectedException        Exception
+     * @expectedExceptionMessage Negatives not allowed: -1
+     */
+    public function ANegativeNumberInTheInputResultsInAnExceptionListingTheNegativeNumber()
+    {
+        $calculator = $this->getCalculator();
+
+        $calculator->add("0,-1,2,3,4,5,6,7,8,9,10");
+    }
+
+    /**
+     * @test
+     * @expectedException        Exception
+     * @expectedExceptionMessage Negatives not allowed: -1,-2,-3
+     */
+    public function MultipleNegativeNumbersInTheInputResultsInAnExceptionListingTheNegativeNumbers()
+    {
+        $calculator = $this->getCalculator();
+
+        $calculator->add("0,-1,-2,-3,4,5,6,7,8,9,10");
+    }
+
 }
