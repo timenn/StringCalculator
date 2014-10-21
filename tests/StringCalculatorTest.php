@@ -32,7 +32,7 @@ class StringCalculatorTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      **/
-    public function TwoNumbersAsInputReturnsTheSumOfThoseNumbers()
+    public function TwoNumbersSeparatedByCommaAsInputReturnsTheSumOfThoseNumbers()
     {
         $calculator = $this->getCalculator();
 
@@ -44,11 +44,31 @@ class StringCalculatorTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      **/
-    public function ManyNumbersAsInputReturnsTheSumOfThoseNumbers()
+    public function ManyNumbersSeparatedByCommasAsInputReturnsTheSumOfThoseNumbers()
     {
         $calculator = $this->getCalculator();
 
         $this->assertSame(55, $calculator->add("0,1,2,3,4,5,6,7,8,9,10"));
+    }
+
+    /**
+     * @test
+     **/
+    public function TwoNumbersSeparatedByNewLineAsInputReturnsTheSumOfThoseNumbers()
+    {
+        $calculator = $this->getCalculator();
+
+        $this->assertSame(5, $calculator->add("2\n3"));
+    }
+
+    /**
+     * @test
+     **/
+    public function ManyNumbersSeparatedByCommasAndNewLinesAsInputReturnsTheSumOfThoseNumbers()
+    {
+        $calculator = $this->getCalculator();
+
+        $this->assertSame(55, $calculator->add("0\n1\n2,3,4\n5,6\n7,8\n9\n10"));
     }
 
 }
