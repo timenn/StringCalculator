@@ -54,6 +54,18 @@ class StringCalculatorTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      **/
+    public function LargeNumbersInInputReturnsTheSumOfOnlyTheNonLargeNumbers()
+    {
+        $calculator = $this->getCalculator();
+
+        $this->assertSame(1000, $calculator->add("1000"));
+        $this->assertSame(0, $calculator->add("1001"));
+        $this->assertSame(49, $calculator->add("0,1001,1002,1003,4,5,6,7,8,9,10"));
+    }
+
+    /**
+     * @test
+     **/
     public function TwoNumbersSeparatedByNewLineAsInputReturnsTheSumOfThoseNumbers()
     {
         $calculator = $this->getCalculator();

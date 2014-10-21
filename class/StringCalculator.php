@@ -11,7 +11,7 @@ class StringCalculator
         {
             if((int)$number < 0) {
                 $negatives[] = $number;
-            } else {
+            } elseif((int)$number <= 1000) {
                 $result += (int)$number;
             }
         }
