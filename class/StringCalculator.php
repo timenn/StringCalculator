@@ -5,7 +5,8 @@ class StringCalculator
     public function add($numbers)
     {
         $result = 0;
-        foreach($this->parseNumbers($numbers, array(",", "\n")) as $number)
+        $delimiters = $this->getDelimiters($numbers);
+        foreach($this->parseNumbers($numbers, $delimiters) as $number)
         {
             $result += (int)$number;
         }
@@ -24,5 +25,15 @@ class StringCalculator
             $result = array_merge($result, $this->parseNumbers($item, $delimiters));
         }
         return $result;
+    }
+
+    private function getDelimiters($numbers)
+    {
+        $matches = array();
+        if (preg_match("#//(.*)?\n#", $numbers, $matches))
+        {
+            return array($matches[1]);
+        }
+        return array(",", "\n");
     }
 }

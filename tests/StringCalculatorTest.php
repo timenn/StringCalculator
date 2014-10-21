@@ -71,4 +71,25 @@ class StringCalculatorTest extends PHPUnit_Framework_TestCase
         $this->assertSame(55, $calculator->add("0\n1\n2,3,4\n5,6\n7,8\n9\n10"));
     }
 
+    /**
+     * @test
+     **/
+    public function ManyNumbersSeparatedByCustomDelimiterAsInputReturnsTheSumOfThoseNumbers()
+    {
+        $calculator = $this->getCalculator();
+
+        $this->assertSame(55, $calculator->add("//;\n0;1;2;3;4;5;6;7;8;9;10"));
+        $this->assertSame(55, $calculator->add("//\t\n0\t1\t2\t3\t4\t5\t6\t7\t8\t9\t10"));
+    }
+
+    /**
+     * @test
+     **/
+    public function ManyNumbersSeparatedByCustomDelimiterOfLengthGreaterThan1AsInputReturnsTheSumOfThoseNumbers()
+    {
+        $calculator = $this->getCalculator();
+
+        $this->assertSame(55, $calculator->add("//longdelimiter\n0longdelimiter1longdelimiter2longdelimiter3longdelimiter4longdelimiter5longdelimiter6longdelimiter7longdelimiter8longdelimiter9longdelimiter10"));
+    }
+
 }
